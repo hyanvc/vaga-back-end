@@ -1,0 +1,53 @@
+﻿<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<!-- no additional media querie or css is required -->
+
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="height:100vh">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <label>CADASTRO DE VEICULOS</label>
+                    <form action="" autocomplete="off">
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label>Senha:</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                        </div>
+                        <button type="button" id="sendlogin" class="btn btn-primary">login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $('#exampleInputPassword1').keypress(function (event) {
+        if (event.keyCode === 13) { // código da tecla "Enter"
+            // sua função jQuery aqui
+                var senha = $("#exampleInputPassword1").val();
+                var email = $("#exampleInputEmail1").val();
+
+                var bb = "Hyan";
+
+                $.ajax({
+                    url: "https://localhost:7163/Login/Login",
+                data: { "Senha": senha, "Proprietario": email },
+                    type: 'POST'
+                })
+                    .done(function (data) {
+                        //window.location.href = "Index/?NM_NOME=" + bb;
+                    window.location.href = "https://localhost:7163";
+
+                    });
+        }
+    });
+</script>

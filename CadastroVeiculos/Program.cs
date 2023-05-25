@@ -1,7 +1,27 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Estrutura de autenticação//
+builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.LoginPath = "/Login/Login";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        option.AccessDeniedPath = "/Login/denied";
+
+    });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("teste", policy =>
+    {
+        policy.RequireClaim("Role", "Role");
+    });
+});
 
 var app = builder.Build();
 
@@ -20,8 +40,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseAuthentication();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Login}");
 
 app.Run();

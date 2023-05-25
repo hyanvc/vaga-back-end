@@ -15,7 +15,15 @@ namespace CadastroVeiculos.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            UsuarioModel veic = new UsuarioModel();
+            List<UsuarioModel> dados = new List<UsuarioModel>();
+            veic.PlacaDoCarro = "PNT5332";
+            veic.Id = 3;
+            veic.MarcadoCarro = "Ford";
+            veic.Proprietario = "Eduardo Freitas";
+            veic.DatadeCadastro = DateTime.Now;
+            dados.Add(veic);
+            return View(dados);
         }
 
         public IActionResult Privacy()
