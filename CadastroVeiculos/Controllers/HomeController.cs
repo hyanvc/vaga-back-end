@@ -31,6 +31,29 @@ namespace CadastroVeiculos.Controllers
             return View();
         }
 
+        public IActionResult Editar()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Editar(UsuarioModel model)
+        {
+            //DEPOIS IMPLEMENTAR A EDICAO...
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Excluir(UsuarioModel model)
+        {
+            //DEPOIS IMPLEMENTAR A EXCLUSAO.
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
